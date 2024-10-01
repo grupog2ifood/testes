@@ -1,0 +1,15 @@
+{
+  "name": "crud-python-main",
+  "version": "1.0.0",
+  "description": "Criação do CRUD em Python: com  flask e html para interface web.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.3"
+  }
+}
