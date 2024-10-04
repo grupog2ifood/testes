@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem dos Usuários</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet href"node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js" defer></script>
+</head>
+<body>
+<div class="container mt-4">
+    <h1 class="text-center">Lista de Usuários</h1>
+
+    <h2 class="text-left">Tabela de Usuários</h2>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Email</th>
+                <th>Celular</th>
+                <th>Telefone</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in usuarios %}
+                <tr>
+                    <td>{{ usuario[0] }}</td>
+                    <td>{{ usuario[1] }}</td>
+                    <td>{{ usuario[2] }}</td>
+                    <td>{{ usuario[3] }}</td>
+                    <td>{{ usuario[4] }}</td>
+                    <td>{{ usuario[5] }}</td>
+                    <td>
+                        <!-- Botão para Atualizar Usuário -->
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#atualizarModal{{ usuario[0] }}">
+                            Atualizar
+                        </button>
+                        <!-- Modal para Atualizar Usuário -->
+                        <div class="modal fade" id="atualizarModal{{ usuario[0] }}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLabel">Atualizar Usuário</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form action="/atualizar" method="post">
+                                        <div class="modal-body">
+                                            <input type="hidden" name="id" value="{{ usuario[0] }}">
+                                            <div class="form-group">
+                                                <label for="nome">Nome:</label>
+                                                <input type="text" name="nome" class="form-control" value="{{ usuario[1] }}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="cpf">CPF:</label>
+                                                <input type="text" name="cpf" class="form-control" value="{{ usuario[2] }}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">Email:</label>
+                                                <input type="email" name="email" class="form-control" value="{{ usuario[3] }}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="celular">Celular:</label>
+                                                <input type="text" name="celular" class="form-control" value="{{ usuario[4] }}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="telefone">Telefone:</label>
+                                                <input type="text" name="telefone" class="form-control" value="{{ usuario[5] }}" required>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary">Atualizar Usuário</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botão para Excluir Usuário -->
+                        <a href="/excluir/{{ usuario[0] }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir este usuário?');">
+                            Excluir
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/cadastrar" class="btn btn-secondary">Voltar</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+body {
+    background-color: #F8F8F8;
+}
+
+/*FORM */
+
+#form-container {
+    background-color: #FFF;
+    border-radius: 20x;
+    box-shadow: .5px 10px 15px rgba(0, 0, 0, .2);
+    margin: 25px auto;
+    padding: 25px;
+}

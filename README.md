@@ -1,3 +1,9 @@
+pip
+
+pip install flask
+pip install mysql-connector-python
+
+
 # como fazer crud em python e mysql usando flask
 
 Criação do CRUD em Python: com  flask e html para interface web.
@@ -8,9 +14,6 @@ como fazer crud em python e mysql usando flask
 # requisitos:
 Python3: 3.10 +
 
-pip
-
-mysql-connector-python
 
 BD: MySQL 8.3
 
@@ -34,31 +37,8 @@ sudo apt install python3
 link para baixar mysql: https://dev.mysql.com/downloads/installer/
 
 
-# Pip 
-instalation:
-
-sudo apt install python3-pip
-
-3: pip install mysql-connector-python
-
-4: pip install mysql-connector-python
 
 # criar bd e tabela
-
-- no prompt / cmd:
-5: pc@pc: $
-mysql -u root -p
-
-CREATE DATABASE empresa;
-USE empresa;
-CREATE TABLE funcionarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(255),
-    localizacao VARCHAR(255),
-    cargo VARCHAR(255),
-    email VARCHAR(255),
-    telefone VARCHAR(20)
-);
 
 # utilização do bootstrap
 
