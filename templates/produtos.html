@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .produto {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Produtos do Restaurante</h1>
+    <div class="container">
+        {% if produtos %}
+            {% for produto in produtos %}
+                <div class="produto">
+                    <h2>{{ produto.nome }}</h2>
+                    <p>Descrição: {{ produto.descricao }}</p>
+                    <p>Preço: R$ {{ produto.preco }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Nenhum produto encontrado para este restaurante.</p>
+        {% endif %}
+    </div>
+    <a href="/menu_restaurantes">Voltar</a>
+</body>
+</html>

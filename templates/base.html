@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Minha Aplicação{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{{ url_for('login') }}">Minha Aplicação</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('cadastrar_usuario') }}">Cadastrar Usuário</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('listar_usuarios') }}">Listar Usuários</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('cadastrar_restaurante') }}">Cadastrar Restaurante</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('listar_restaurante') }}">Listar Restaurantes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('cadastrar_produto') }}">Cadastrar Produto</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('listar_produto') }}">Listar Produtos</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-info" role="alert">
+                {% for message in messages %}
+                    {{ message }}<br>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    
+    {% block content %}{% endblock %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

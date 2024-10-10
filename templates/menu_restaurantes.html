@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu de Restaurantes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .restaurante {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        h1 {
+            text-align: center;
+        }
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Menu de Restaurantes</h1>
+    <div class="container">
+        {% for restaurante in restaurantes %}
+            <div class="restaurante">
+                <h2>{{ restaurante.nome }}</h2>
+                <p>CNPJ: {{ restaurante.cnpj }}</p>
+                <p>Telefone: {{ restaurante.telefone }}</p>
+                <p>Email: {{ restaurante.email }}</p>
+                <p>Endereço: {{ restaurante.endereco }}</p>
+                <a href="{{ url_for('produtos', restaurante_id=restaurante.id) }}">Ver Produtos</a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
