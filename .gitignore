@@ -2,22 +2,11 @@
 teste_rota.py
 teste_connection.py
 app.py
-
-# Ignorar a pasta node_modules
 node_modules/
-
-# Ignorar a pasta css
 css/
-
-# Ignorar a pasta static
 static/
-
 .env
-
 venv/
-
 README.md
-
 routes/
-
 .vscode/
