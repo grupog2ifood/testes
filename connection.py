@@ -3,10 +3,10 @@ import mysql.connector
 def get_db_connection():
     try:
         connection = mysql.connector.connect(
-            host='localhost',
-            user='root',
-            password='admin',
-            database='projetog2'
+            host='yourhost',
+            user='youruser',
+            password='yourpassword',
+            database='yourdatabase'
         )
         if connection.is_connected():
             print("Conexão bem-sucedida ao banco de dados!")
