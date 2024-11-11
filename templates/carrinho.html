@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,32 +7,30 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<div class="container mt-4">
     <h1 class="text-center">Carrinho de Compras</h1>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Produto</th>
-                <th>Preço</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Aqui você pode iterar sobre os produtos do carrinho -->
-            {% for item in carrinho %}
-                <tr>
-                    <td>{{ item.nome }}</td>
-                    <td>{{ item.preco }}</td>
-                    <td>
+    <div class="container">
+        {% if carrinho %}
+            <ul class="list-group mb-3">
+                {% for item in carrinho %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>{{ item.produto_nome }} - R$ {{ item.produto_preco }}</span>
                         <!-- Botão para remover o produto do carrinho -->
-                        <a href="/remover-item/{{ item.id }}" class="btn btn-danger">Remover</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <a href="/finalizar-compra" class="btn btn-primary">Finalizar Compra</a>
-    <a href="/produtos" class="btn btn-secondary">Continuar Comprando</a>
-</div>
+                        <form action="{{ url_for('remover_do_carrinho') }}" method="post" style="display:inline;">
+                            <input type="hidden" name="produto_id" value="{{ item.produto_id }}">
+                            <button type="submit" class="btn btn-danger btn-sm">Remover</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+            <h3>Total: R$ {{ total }}</h3>
+            <form action="{{ url_for('finalizar_pedido') }}" method="post">
+                <button type="submit" class="btn btn-secondary">Finalizar Pedido</button>
+            </form>
+            <a href="{{ url_for('produtos', restaurante_id=1) }}" class="btn btn-primary mt-3">Voltar aos Produtos</a>
+        {% else %}
+            <p>O carrinho está vazio.</p>
+            <a href="{{ url_for('produtos', restaurante_id=1) }}" class="btn btn-primary mt-3">Voltar aos Produtos</a>
+        {% endif %}
+    </div>
 </body>
 </html>

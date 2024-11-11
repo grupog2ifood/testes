@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Status dos Pedidos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container my-5">
+        <h1 class="text-center">Gerenciar Status dos Pedidos</h1>
+        {% if pedidos %}
+            <table class="table table-bordered table-hover mt-4">
+                <thead>
+                    <tr>
+                        <th>ID do Pedido</th>
+                        <th>ID do Usuário</th>
+                        <th>Total</th>
+                        <th>Forma de Pagamento</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pedido in pedidos %}
+                        <tr>
+                            <td>{{ pedido.id }}</td>
+                            <td>{{ pedido.usuario_id }}</td>
+                            <td>R$ {{ pedido.total }}</td>
+                            <td>{{ pedido.forma_pagamento }}</td>
+                            <td>{{ pedido.status }}</td>
+                            <td>
+                                <form action="{{ url_for('atualizar_status_pedido') }}" method="POST">
+                                    <input type="hidden" name="pedido_id" value="{{ pedido.id }}">
+                                    <select name="novo_status" class="form-control">
+                                        <option value="preparando">Preparando</option>
+                                        <option value="finalizado">Finalizado</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-primary mt-2">Atualizar Status</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Não há pedidos pendentes.</p>
+        {% endif %}
+        <a href="{{ url_for('home') }}" class="btn btn-secondary mt-3">Voltar à Página Inicial</a>
+    </div>
+</body>
+</html>

@@ -18,11 +18,16 @@ def cadastrar_usuario():
         email = request.form['email']
         celular = request.form['celular']
         telefone = request.form['telefone']
+        print(f"Dados recebidos: nome={nome}, cpf={cpf}, email={email}, celular={celular}, telefone={telefone}")
+
 
         connection = get_db_connection()
         cursor = connection.cursor()
 
         try:
+            # Verificar se os dados estão sendo recebidos corretamente
+            print(f"Dados recebidos: nome={nome}, cpf={cpf}, email={email}, celular={celular}, telefone={telefone}")
+
             # Inserir os dados na tabela usuarios
             cursor.execute('''
                 INSERT INTO usuarios (nome, cpf, email, celular, telefone)
@@ -34,7 +39,7 @@ def cadastrar_usuario():
             return redirect(url_for('usuario.cadastrar_usuario'))  # Redireciona corretamente para a rota de cadastro
 
         except mysql.connector.IntegrityError as e:
-            # Tratamento específico para erro de duplicidade de CPF ou email
+            print(f"Erro de integridade: {str(e)}")  # Log do erro
             if "Duplicate entry" in str(e):
                 flash("Erro: CPF ou Email já cadastrado!", 'danger')
             else:
@@ -42,6 +47,7 @@ def cadastrar_usuario():
             connection.rollback()  # Reverte a transação em caso de erro
 
         except Exception as e:
+            print(f"Erro ao cadastrar usuário: {str(e)}")  # Log do erro
             connection.rollback()  # Reverte a transação em caso de erro
             flash(f'Erro ao cadastrar usuário: {str(e)}', 'danger')
 
@@ -50,6 +56,7 @@ def cadastrar_usuario():
             connection.close()
 
     return render_template('cadastrar-usuario.html')
+
 
 # Rota para listar usuários
 @usuario_bp.route("/listar-usuario")

@@ -1,0 +1,25 @@
+<!-- acompanhamento.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Acompanhe seu Pedido</title>
+</head>
+<body>
+    <h1>Status do Pedido: <span id="status"></span></h1>
+
+    <script>
+        const pedidoId = 1;  // Exemplo: pegue esse valor de uma variável dinâmica
+
+        function atualizarStatus() {
+            fetch(`/pedidos/${pedidoId}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("status").textContent = data.status;
+                });
+        }
+
+        setInterval(atualizarStatus, 5000); // Atualiza a cada 5 segundos
+    </script>
+</body>
+</html>

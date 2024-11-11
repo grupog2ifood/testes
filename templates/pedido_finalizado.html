@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status do Pedido</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container my-5">
+        <h1 class="text-center">Status do Pedido</h1>
+        <div class="text-center">
+            <p><strong>Status do Pedido: </strong>{{ status_pedido }}</p>
+        </div>
+        <div class="text-center">
+            <a href="{{ url_for('produtos', restaurante_id=1) }}" class="btn btn-primary">Voltar aos Produtos</a>
+            <a href="{{ url_for('carrinho') }}" class="btn btn-secondary">Voltar ao Carrinho</a>
+        </div>
+    </div>
+</body>
+</html>
